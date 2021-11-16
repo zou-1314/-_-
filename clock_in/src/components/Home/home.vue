@@ -467,7 +467,7 @@ export default {
 // 积分
 .bottomPoint {
   display: flex;
-  padding: 2rem 3rem 0 3rem;
+  padding: 2rem 2rem 0 3rem;
 
   div {
     font-size: 2rem;

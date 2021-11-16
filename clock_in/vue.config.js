@@ -7,9 +7,9 @@ module.exports = {
     },
     lintOnSave: false, //关闭语法检查 
     // 开启代理服务器
-    devServer: {
-        proxy: `http://42.193.15.69:8181`
-    },
+    // devServer: {
+    //     proxy: `http://42.193.15.69:8181`
+    // },
     css: {
         loaderOptions: {
             less: {

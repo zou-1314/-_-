@@ -44,9 +44,7 @@
               name="asyncValidator"
               placeholder="用户名"
               left-icon="contact"
-              :rules="[
-                { validator: asyncValidator, message: '请输入2~6位的用户名' },
-              ]"
+              :rules="[{ asyncValidator, message: '请输入2~6位的用户名' }]"
               clickable
             />
             <van-field
@@ -95,7 +93,6 @@ export default {
         userId: "",
         userPassword: "",
       },
-      userPasswordCheck: "",
       signupForm: {
         userName: "",
         checkPassword: "",
@@ -111,10 +108,10 @@ export default {
     validator(val) {
       return /^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,15}$/.test(val);
     },
-    asyncValidator(val) {
+    asyncValidator(val1) {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(/^[\u4E00-\u9FA5A-Za-z0-9]{2,6}$/.test(val));
+          resolve(/^[\u4E00-\u9FA5A-Za-z0-9]{2,6}$/.test(val1));
         }, 0);
       });
     },
@@ -133,9 +130,34 @@ export default {
       if (res.state === "登录成功") {
         this.$toast("登录成功");
         this.$router.push("/home");
+      } else {
+        this.$toast(res.state);
       }
     },
     async signup() {
+      var password1 = this.signupForm.checkPassword;
+      var password2 = this.loginForm.userPassword;
+      console.log(password1.length);
+      console.log(this.signupForm.userName.length);
+      //   判断密码是否一致
+      if (password1 != password2) {
+        return this.$toast.fail("密码不一致");
+      }
+      //   判断密码位数是否正确
+      if (password1.length < 6 || password1.length > 15) {
+        return this.$toast.fail("密码位数应在6到15位");
+      }
+      // 判断用户名是否输入
+      if (
+        this.signupForm.userName.length < 2 ||
+        this.signupForm.userName.length > 6
+      ) {
+        return this.$toast.fail("用户名在2到6位");
+      }
+      //   判断学号是否输入正确
+      if (this.loginForm.userId.length != 10) {
+        return this.$toast.fail("学号输入错误");
+      }
       localStorage.setItem("userId", this.loginForm.userId);
       localStorage.setItem("userPassword", this.loginForm.userPassword);
       const { data: res } = await this.$http({
@@ -143,7 +165,7 @@ export default {
         method: "post",
         params: {
           ...this.loginForm,
-          userName: "",
+          userName: this.signupForm.userName,
         },
       });
       console.log(res);
@@ -151,6 +173,8 @@ export default {
       if (res.state === "注册成功") {
         this.$toast("注册成功");
         this.$router.push("/home");
+      } else {
+        this.$toast(res.state);
       }
     },
     sessionLogin() {
