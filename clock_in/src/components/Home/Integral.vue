@@ -41,7 +41,7 @@
             <div class="NO">NO.</div>
             <p>{{ ownInformation.curRank }}</p>
           </div>
-          <div class="rankRight">您的分数</div>
+          <div class="rankRight">收集的米粒</div>
         </section>
       </van-cell-group>
       <div class="topRowTwo"></div>
@@ -173,6 +173,7 @@ export default {
 }
 .cardTwo {
   width: 80%;
+  height: 8rem;
   background-color: #fff;
 }
 .cardThree {
@@ -239,11 +240,11 @@ export default {
       }
     }
     .rankRight {
-      transform: translateX(9rem);
-      display: flex;
-      align-items: center;
-      font-family: none;
-      font-weight: 400;
+      transform: translateX(9rem) !important;
+      display: flex !important;
+      align-items: center !important;
+      font-family: none !important;
+      font-weight: 400 !important;
     }
   }
   // 人物图标
@@ -291,26 +292,29 @@ export default {
     .rank {
       display: flex;
       .rankOne {
-        font-size: 2.2rem;
+        font-size: 1.75rem;
+        transform: translateY(0.7rem);
       }
       .NO {
         margin-left: 1rem !important;
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
         font-weight: 400;
-        transform: translateY(0.3rem) !important;
+        transform: translateY(0.7rem) !important;
       }
       p {
         margin: 0;
         padding: 0 0 0 0.2rem;
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
         font-weight: 400;
-        transform: translateY(0.3rem) !important;
+        transform: translateY(0.7rem) !important;
         font-family: none;
       }
     }
     .rankRight {
-      font-size: 2rem;
-      transform: translateY(0.2rem);
+      font-size: 1.8rem;
+      //   transform: translateY(1rem);
+      transform: translateX(1.8rem);
+      margin-top: 0.7 rem;
     }
   }
 }
@@ -324,5 +328,9 @@ export default {
   height: 72px;
   margin-top: 8px;
   border-radius: 4px;
+}
+.van-hairline--top-bottom::after,
+.van-hairline-unset--top-bottom::after {
+  border-width: 0 0;
 }
 </style>

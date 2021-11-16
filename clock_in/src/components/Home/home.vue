@@ -317,8 +317,11 @@ export default {
         "/record/upload?token=" + str,
         formData
       );
+      console.log(res);
       if (res.state == "今日已上传,请走修改接口")
-        return this.$toast.fail("今日已上传！");
+        return this.$toast.fail("今日已上传");
+      if (res.state == "上传时间不合法")
+        return this.$toast.fail("上传时间不合法");
       this.$toast.success("上传成功！");
       this.updatePicState = "照片上传成功";
       this.changeColor = "true";
@@ -402,6 +405,7 @@ export default {
   justify-content: space-between;
   width: 27.5rem;
   background-color: #fff;
+  //   border: 3px solid #57bf7d;
 }
 .updateStateTrue {
   padding: 1rem 1.8rem;
@@ -410,6 +414,13 @@ export default {
   justify-content: space-between;
   width: 27.5rem;
   background-color: #57bf7d;
+  box-shadow: 0 0 2px 2px #57bf7d;
+  //   border-width: none !important;
+}
+// 去除组件自带白色边框线
+.van-hairline--top-bottom::after,
+.van-hairline-unset--top-bottom::after {
+  border-width: 0 0;
 }
 
 .updateStateFalse {
