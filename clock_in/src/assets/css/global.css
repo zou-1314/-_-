@@ -1,0 +1,22 @@
+/* 全局样式表 */
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+html {
+  font-size: 60.5%;
+  /* width: 100vw; */
+  /* height: 100vh; */
+}
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(145deg, #719fad, #e7e7e4);
+}
